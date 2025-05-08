@@ -13,6 +13,7 @@ const studentRoutes = require('./routes/students');
 const disciplineRoutes = require('./routes/disciplines');
 const classRoutes = require('./routes/classes');
 const classDisciplineRoutes = require('./routes/classDisciplines');
+const lessonsRoutes = require('./routes/lessons'); 
 
 //rotas
 app.get('/', (req, res) => res.send('API Online'));
@@ -21,6 +22,7 @@ app.use('/api/students', studentRoutes);
 app.use('/api/disciplines', disciplineRoutes);
 app.use('/api/classes', classRoutes);
 app.use('/api/class-disciplines', classDisciplineRoutes);
+app.use('/api/lessons', lessonsRoutes); 
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
