@@ -11,12 +11,14 @@ app.use(express.json());
 const professorRoutes = require('./routes/professors');
 const studentRoutes = require('./routes/students');
 const disciplineRoutes = require('./routes/disciplines');
+const classRoutes = require('./routes/classes');
 
 //rotas
 app.get('/', (req, res) => res.send('API Online'));
 app.use('/api/professors', professorRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/disciplines', disciplineRoutes);
+app.use('/api/classes', classRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
