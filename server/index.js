@@ -8,12 +8,14 @@ app.use(cors());
 app.use(express.json());
 
 
-// Importar as rotas
+// controllers
 const professorRoutes = require('./routes/professors');
-app.use('/api/professors', professorRoutes);
+const studentRoutes = require('./routes/students');
 
-// Teste de rota
+//rotas
 app.get('/', (req, res) => res.send('API Online'));
+app.use('/api/professors', professorRoutes);
+app.use('/api/students', studentRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
