@@ -4,6 +4,8 @@ import CreateProfessor from './components/CreateProfessor';
 import ProfessorList from './components/ProfessorList';
 import CreateStudent from './components/CreateStudent';
 import StudentList from './components/StudentList';
+import CreateClass from './components/CreateClass';
+import ClassList from './components/ClassList';
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
           <Route path="/professors" element={<ProfessorList />} />
           <Route path="/create-student" element={<CreateStudent />} />
           <Route path="/students" element={<StudentList />} />
+          <Route path="/create-class" element={<CreateClass />} />
+          <Route path="/classes" element={<ClassList />} />
         </Routes>
       </div>
     </Router>

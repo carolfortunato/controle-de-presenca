@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProfessor = () => {
   const [name, setName] = useState('');
@@ -7,6 +8,7 @@ const CreateProfessor = () => {
   const [employeeNumber, setEmployeeNumber] = useState('');
   const [status, setStatus] = useState('active');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +27,8 @@ const CreateProfessor = () => {
       setEmail('');
       setEmployeeNumber('');
       setStatus('active');
+
+      navigate('/professors')
     } catch (err) {
       setError('Erro ao cadastrar professor. Verifique os dados e tente novamente.');
     }

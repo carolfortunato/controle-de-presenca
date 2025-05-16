@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const CreateStudent = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [registrationNumber, setRegistrationNumber] = useState('');
   const [status, setStatus] = useState('active');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ const CreateStudent = () => {
     try {
       const response = await api.post('/students', newStudent);
       alert('Aluno cadastrado com sucesso!');
+      navigate('/students');
     } catch (error) {
       console.error('Erro ao cadastrar aluno:', error);
       alert('Erro ao cadastrar aluno');
