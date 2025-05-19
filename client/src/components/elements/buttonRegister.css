@@ -1,0 +1,8 @@
+.buttonRegister{
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 40px;
+    font-weight: 700;
+}

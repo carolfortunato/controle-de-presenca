@@ -1,24 +1,38 @@
 import React, { useState } from 'react';
 import api from '../services/api';
+import ButtonRegister from './elements/ButtonRegister';
+import Card from './elements/Card';
+import Select from './elements/Select';
 import { useNavigate } from 'react-router-dom';
+import Input from './elements/Input';
 
 const CreateProfessor = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [employeeNumber, setEmployeeNumber] = useState('');
-  const [status, setStatus] = useState('active');
+  const [statusSelecionado, setStatusSelecionado] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+
+  const statusSelect = [
+      { value: 'ativo', label: 'Ativo' },
+      { value: 'inativo', label: 'Inativo' }
+  ];
+
+  const handleStatusChange = (event) => {
+     setStatusSelecionado(event.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newProfessor = {
-      name,
-      email,
-      employee_number: employeeNumber,
-      status,
-    };
+  const newProfessor = {
+    name,
+    email,
+    employee_number: employeeNumber,
+    statusSelecionado,
+  };
 
     try {
       const response = await api.post('/professors', newProfessor);
@@ -26,67 +40,72 @@ const CreateProfessor = () => {
       setName('');
       setEmail('');
       setEmployeeNumber('');
-      setStatus('active');
-
+      setStatusSelecionado('active');
       navigate('/professors')
     } catch (err) {
       setError('Erro ao cadastrar professor. Verifique os dados e tente novamente.');
     }
   };
 
+  
   return (
-    <div>
-      <h2>Cadastrar Professor</h2>
+    <div style={{display:'flex', justifyContent: 'center'}}> 
+    <Card tittle= "Cadastrar professor">        
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Nome</label>
-          <input
+          <Input
+            label="Nome Completo"
             type="text"
-            id="name"
+            id="nome"
+            name="nome"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder="Digite seu nome"
             required
+     
           />
         </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
+        <div> 
+          <Input
+            label="Email para cadastro"
             type="email"
             id="email"
+            placeholder="Digite seu email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
         <div>
-          <label htmlFor="employeeNumber">Matricula do professor</label>
-          <input
+           <Input
+            label = "Matricula do Professor"
             type="text"
             id="employeeNumber"
+             placeholder="Digite sua Matricula"
             value={employeeNumber}
             onChange={(e) => setEmployeeNumber(e.target.value)}
             required
           />
         </div>
         <div>
-          <label htmlFor="status">Status</label>
-          <select
-            id="status"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            required
-          >
-            <option value="active">Ativo</option>
-            <option value="inactive">Inativo</option>
-          </select>
+          <Select id="status"
+                  name="status"
+                  label="Status:"
+                  value={statusSelecionado}
+                  onChange={handleStatusChange}
+                  options={statusSelect}
+                   >
+          </Select>
+    
         </div>
         <div>
-          <button type="submit">Cadastrar</button>
+         <ButtonRegister titulo="Cadastrar" colorBackground= "049F09" colorText= "FFFFFF"/>
         </div>
-      </form>
+      </form>     
       {error && <div style={{ color: 'red' }}>{error}</div>}
+      </Card>
     </div>
-  );
+);
 };
 
 export default CreateProfessor;

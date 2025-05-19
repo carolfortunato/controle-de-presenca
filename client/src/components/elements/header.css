@@ -1,0 +1,19 @@
+.header{
+    display: flex;
+    align-items: center;
+    background: #d9d9d9;
+    width: 100%; 
+    height: 10vh;
+}
+.headerLogo{
+    width: 80%;
+    height: auto;
+    margin-left: 50px;
+}
+.logoFatec{
+    width: 10%;
+    margin-bottom: 3%;
+}
+.logoSP{
+    width: 20%;
+}

@@ -6,14 +6,17 @@ import CreateStudent from './components/CreateStudent';
 import StudentList from './components/StudentList';
 import CreateClass from './components/CreateClass';
 import ClassList from './components/ClassList';
-import DisciplineList from './components/DisciplineList'
+import DisciplineList from './components/DisciplineList';
 import CreateDiscipline from './components/CreateDiscipline';
+import MainTitle from './components/elements/MainTitle';
+import Header from './components/elements/Header'
 
 const App = () => {
   return (
     <Router>
       <div>
-        <h1>Sistema de Controle de Presença</h1>
+        <Header/>
+        <MainTitle/>
         <Routes>
           <Route path="/create-professor" element={<CreateProfessor />} />
           <Route path="/professors" element={<ProfessorList />} />
@@ -23,7 +26,6 @@ const App = () => {
           <Route path="/classes" element={<ClassList />} />
           <Route path="/disciplines" element={<DisciplineList />} />
           <Route path="/create-discipline" element={<CreateDiscipline />} />
-
         </Routes>
       </div>
     </Router>
