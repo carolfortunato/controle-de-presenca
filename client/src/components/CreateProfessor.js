@@ -27,12 +27,12 @@ const CreateProfessor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-  const newProfessor = {
+    const newProfessor = {
     name,
     email,
     employee_number: employeeNumber,
     statusSelecionado,
-  };
+   };
 
     try {
       const response = await api.post('/professors', newProfessor);
@@ -88,24 +88,25 @@ const CreateProfessor = () => {
           />
         </div>
         <div>
-          <Select id="status"
-                  name="status"
-                  label="Status:"
-                  value={statusSelecionado}
-                  onChange={handleStatusChange}
-                  options={statusSelect}
-                   >
+          <Select 
+            id="status"
+            name="status"
+            label="Status:"
+            value={statusSelecionado}
+            onChange={handleStatusChange}
+            options={statusSelect}
+            >
           </Select>
     
         </div>
-        <div>
+        <div style={{display:'flex', justifyContent: 'center'}}>
          <ButtonRegister titulo="Cadastrar" colorBackground= "049F09" colorText= "FFFFFF"/>
         </div>
       </form>     
       {error && <div style={{ color: 'red' }}>{error}</div>}
       </Card>
     </div>
-);
+  );
 };
 
 export default CreateProfessor;

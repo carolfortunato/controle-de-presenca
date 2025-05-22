@@ -10,6 +10,8 @@ import DisciplineList from './components/DisciplineList';
 import CreateDiscipline from './components/CreateDiscipline';
 import MainTitle from './components/elements/MainTitle';
 import Header from './components/elements/Header'
+import Login from './components/Login'
+
 
 const App = () => {
   return (
@@ -18,6 +20,7 @@ const App = () => {
         <Header/>
         <MainTitle/>
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/create-professor" element={<CreateProfessor />} />
           <Route path="/professors" element={<ProfessorList />} />
           <Route path="/create-student" element={<CreateStudent />} />

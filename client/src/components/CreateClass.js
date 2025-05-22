@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import Card from './elements/Card';
+import Input from './elements/Input';
+import ButtonRegister from './elements/ButtonRegister';
 
 const CreateClasse = () => {
   const [name, setName] = useState('');
@@ -30,34 +33,39 @@ const CreateClasse = () => {
   };
 
   return (
-    <div>
-      <h2>Criar Classe</h2>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Nome da Classe</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
+    <div style={{display:'flex', justifyContent: 'center'}}>
+      <Card tittle= "Criar classe">        
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Input   
+              label="Nome da Classe"           
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            >
+            </Input>
+          </div>
 
-        <div>
-          <label htmlFor="semester">Semestre</label>
-          <input
-            type="text"
-            id="semester"
-            value={semester}
-            onChange={(e) => setSemester(e.target.value)}
-            required
-          />
-        </div>
+          <div>
+            <Input
+              label="Semestre"
+              type="text"
+              id="semester"
+              value={semester}
+              onChange={(e) => setSemester(e.target.value)}
+              required
+            >
+            </Input>
+          </div>
 
-        <button type="submit">Criar Classe</button>
-      </form>
+          <div style={{display:'flex', justifyContent: 'center'}}>
+            <ButtonRegister titulo="Criar classe" colorBackground= "049F09" colorText= "FFFFFF"/>
+          </div>
+        </form>
+      </Card>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import Card from './elements/Card';
+import Input from './elements/Input';
+import ButtonRegister from './elements/ButtonRegister';
 
 function CreateDiscipline() {
   const navigate = useNavigate();
@@ -36,30 +39,46 @@ function CreateDiscipline() {
   };
 
   return (
-    <div className="container">
-      <h2>Criar Disciplina</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nome:</label>
-          <input name="name" value={formData.name} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Código:</label>
-          <input name="code" value={formData.code} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Carga Horária:</label>
-          <input
-            name="workload"
-            type="number"
-            value={formData.workload}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Cadastrar</button>
-      </form>
-      {message && <p>{message}</p>}
+    <div style={{display:'flex', justifyContent: 'center'}}>
+      <Card tittle= "Criar Disciplina">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Input
+              label="Nome:"
+              name="name" 
+              value={formData.name} 
+              onChange={handleChange} 
+              required 
+            >
+            </Input>
+          </div>
+          <div>
+            <Input
+              label="Código:"
+              name="code" 
+              value={formData.code} 
+              onChange={handleChange} 
+              required
+            >
+            </Input>
+          </div>
+          <div>
+            <Input
+              label="Carga Horária:"
+              name="workload"
+              type="number"
+              value={formData.workload}
+              onChange={handleChange}
+              required
+              >                
+            </Input>
+          </div>
+          <div style={{display:'flex', justifyContent: 'center'}}>
+             <ButtonRegister titulo="Cadastrar" colorBackground= "049F09" colorText= "FFFFFF"/>
+          </div>
+        </form>
+        {message && <p>{message}</p>}
+      </Card>
     </div>
   );
 }

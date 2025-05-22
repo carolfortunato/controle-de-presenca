@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import Card from './elements/Card';
+import ButtonRegister from './elements/ButtonRegister';
+import Select from './elements/Select';
+import Input from './elements/Input';
 
 const CreateStudent = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [registrationNumber, setRegistrationNumber] = useState('');
-  const [status, setStatus] = useState('active');
+  const [statusSelecionado, setStatusSelecionado] = useState('active');
   const navigate = useNavigate();
+
+  const handleStatusChange = (event) => {
+     setStatusSelecionado(event.target.value);
+  };
+
+  const statusSelect = [
+        { value: 'ativo', label: 'Ativo' },
+        { value: 'inativo', label: 'Inativo' }
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +29,7 @@ const CreateStudent = () => {
       name,
       email,
       registration_number: registrationNumber,
-      status,
+      statusSelecionado,
     };
 
     try {
@@ -30,49 +43,58 @@ const CreateStudent = () => {
   };
 
   return (
-    <div>
-      <h2>Cadastrar Aluno</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nome:</label>
-          <input
+    <div style={{display:'flex', justifyContent: 'center'}}>
+      <Card tittle= "Cadastrar aluno"> 
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Input
+            label="Nome Completo"
             type="text"
+            id="nomeStudent"
+            name="nome"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
+            placeholder="Digite o nome"
+            required     
+            />
+          </div>
+          <div>
+            <Input
+            label="Email do aluno"
             type="email"
+            id="emailStudent"
+            placeholder="Digite o email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-          />
-        </div>
-        <div>
-          <label>Matrícula:</label>
-          <input
+            />
+          </div>
+          <div>            
+           <Input
+            label = "Matricula do aluno"
             type="text"
+            id="registrationNumber"
+            placeholder="Digite a matricula"
             value={registrationNumber}
             onChange={(e) => setRegistrationNumber(e.target.value)}
             required
-          />
-        </div>
-        <div>
-          <label>Status:</label>
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            required
-          >
-            <option value="active">Ativo</option>
-            <option value="inactive">Inativo</option>
-          </select>
-        </div>
-        <button type="submit">Cadastrar</button>
-      </form>
+            />                    
+          </div>
+          <div>           
+            <Select id="status"
+                    name="status"
+                    label="Status:"
+                    value={statusSelecionado}
+                    onChange={handleStatusChange}
+                    options={statusSelect}
+                    >
+            </Select>              
+          </div>
+          <div style={{display:'flex', justifyContent: 'center'}}>
+            <ButtonRegister titulo="Cadastrar" colorBackground= "049F09" colorText= "FFFFFF"/>
+          </div>
+        </form>
+      </Card>  
     </div>
   );
 };

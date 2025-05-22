@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/api';
+import Card from './elements/Card';
 
 const ProfessorList = () => {
   const [professors, setProfessors] = useState([]);
@@ -25,8 +26,8 @@ const ProfessorList = () => {
   }
 
   return (
-    <div>
-      <h2>Lista de Professores</h2>
+    <div style={{display:'flex', justifyContent: 'center'}}>
+      <Card tittle= "Lista de Professores">
       {error && <div style={{ color: 'red' }}>{error}</div>}
       <table>
         <thead>
@@ -54,6 +55,7 @@ const ProfessorList = () => {
           )}
         </tbody>
       </table>
+      </Card>
     </div>
   );
 };
