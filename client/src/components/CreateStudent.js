@@ -13,13 +13,9 @@ const CreateStudent = () => {
   const [statusSelecionado, setStatusSelecionado] = useState('active');
   const navigate = useNavigate();
 
-  const handleStatusChange = (event) => {
-     setStatusSelecionado(event.target.value);
-  };
-
   const statusSelect = [
-        { value: 'ativo', label: 'Ativo' },
-        { value: 'inativo', label: 'Inativo' }
+        { value: 'active', label: 'Ativo' },
+        { value: 'inactive', label: 'Inativo' }
   ];
 
   const handleSubmit = async (e) => {
@@ -29,7 +25,7 @@ const CreateStudent = () => {
       name,
       email,
       registration_number: registrationNumber,
-      statusSelecionado,
+      status: statusSelecionado,
     };
 
     try {
@@ -85,7 +81,7 @@ const CreateStudent = () => {
                     name="status"
                     label="Status:"
                     value={statusSelecionado}
-                    onChange={handleStatusChange}
+                    onChange={(e) => setStatusSelecionado(e.target.value)}
                     options={statusSelect}
                     >
             </Select>              

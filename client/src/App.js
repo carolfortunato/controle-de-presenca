@@ -11,6 +11,10 @@ import CreateDiscipline from './components/CreateDiscipline';
 import MainTitle from './components/elements/MainTitle';
 import Header from './components/elements/Header'
 import Login from './components/Login'
+import SelectClass from './components/SelectClass'
+import SelectDiscipline from './components/SelectDiscipline';
+import SelectPresence from './components/SelectPresence';
+import AttendanceList from './components/AttendanceList';
 
 
 const App = () => {
@@ -21,6 +25,11 @@ const App = () => {
         <MainTitle/>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/select-class" element={<SelectClass />} />
+          <Route path="/select-discipline" element={<SelectDiscipline />} />
+          <Route path="/select-presence" element={<SelectPresence />} />
+          <Route path="/attendance-list" element={<AttendanceList />} />
+
           <Route path="/create-professor" element={<CreateProfessor />} />
           <Route path="/professors" element={<ProfessorList />} />
           <Route path="/create-student" element={<CreateStudent />} />

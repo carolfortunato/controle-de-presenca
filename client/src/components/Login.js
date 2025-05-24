@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import Card from './elements/Card';
 import Input from './elements/Input';
 import ButtonRegister from './elements/ButtonRegister';
-import CreateProfessor from './CreateProfessor';
 
 
 const Login = () => {
@@ -16,6 +15,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     }
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/select-class'); 
+  }
 
   return (
     <div style={{display:'flex', justifyContent: 'center'}}>
@@ -45,7 +50,7 @@ const Login = () => {
                 ></Input>
             </div>
             <div style={{display:'flex', justifyContent: 'center'}}>
-                <ButtonRegister titulo="Entrar" />
+                <ButtonRegister titulo="Entrar" onClick={handleClick} />
             </div>
             <div style={{display:'grid', justifyContent: 'center'}}>
             <p>

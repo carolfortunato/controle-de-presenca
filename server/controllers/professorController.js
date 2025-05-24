@@ -2,6 +2,7 @@ const db = require('../db/knex');
 
 const getAllProfessors = async (req, res) => {
   try {
+     debugger
     const professors = await db('professors').select('*');
     res.json(professors);
   } catch (error) {
@@ -10,6 +11,7 @@ const getAllProfessors = async (req, res) => {
 };
 
 const createProfessor = async (req, res) => {
+  debugger
   const { name, email, employee_number, status } = req.body;
 
   if (!name || !email || !employee_number || !status) {
